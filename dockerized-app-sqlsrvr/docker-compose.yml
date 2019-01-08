@@ -10,7 +10,7 @@ services:
     ports:
       - 8005:80
     depends_on:
-      - db
+      - sqldata
   db:
      image: mysql:5
      volumes:
@@ -19,13 +19,13 @@ services:
       MYSQL_DATABASE: cakephp_db
       MYSQL_ROOT_PASSWORD: root_password
 
-# sql.data:
- #  image: microsoft/mssql-server-linux:2017-latest
-  # environment:
-   #   - SA_PASSWORD=Pass@word
-    #  - ACCEPT_EULA=Y
-   #ports:
-    #  - 5434:1433
+  sqldata:
+     image: microsoft/mssql-server-linux:2017-latest
+     environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+     ports:
+      - 5434:1433
 volumes:
   db-data:
       external: false

@@ -1,42 +1,31 @@
 FROM php:7.2-apache
+# Microsoft SQL Server Prerequisites
+RUN apt-get update \
+    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/9/prod.list \
+    > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get install -y --no-install-recommends \
+    locales \
+    apt-transport-https \
+    && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+    && locale-gen \
+    && apt-get update \
+    && apt-get -y --no-install-recommends install \
+    unixodbc-dev \
+    msodbcsql17
 
-RUN apt-get update -yqq \
-  && apt-get install -yqq --no-install-recommends \
-      git \
-          zip \
-	      unzip \
-	        && rm -rf /var/lib/apt/lists
+    RUN docker-php-ext-install mbstring pdo pdo_mysql \
+        && pecl install sqlsrv pdo_sqlsrv xdebug \
+        && docker-php-ext-enable sqlsrv pdo_sqlsrv xdebug
 
-#Download appropriate package for the OS version
-#Choose only ONE of the following, corresponding to your OS version
-
-
-#Ubuntu 16.04
-RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-
-
-RUN exit
-RUN apt-get update
-RUN ACCEPT_EULA=Y apt-get install msodbcsql17
-# optional: for bcp and sqlcmd
-RUN ACCEPT_EULA=Y apt-get install mssql-tools
-RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
-RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-RUN source ~/.bashrc
-# optional: for unixODBC development headers
-RUN apt-get install unixodbc-dev
-
-		# Enable PHP extensions
-		#RUN docker-php-ext-install pdo_mysql mysqli
-                RUN pecl install sqlsrv pdo_sqlsrv
-		
-                # Install composer
-		RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+    # Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
 		# Add cake and composer command to system path
 		ENV PATH="${PATH}:/var/www/html/lib/Cake/Console"
 		ENV PATH="${PATH}:/var/www/html/app/Vendor/bin"
 
+RUN echo "<?php phpinfo();" > index.php
 		# COPY apache site.conf file
 		COPY ./docker/apache/site.conf /etc/apache2/sites-available/000-default.conf
 
