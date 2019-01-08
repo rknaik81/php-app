@@ -17,14 +17,8 @@ RUN apt-get update && apt-get install -y \
         RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
         RUN /bin/bash -c "source ~/.bashrc"
 
-        # php libraries
-        RUN apt-get update && apt-get install -y \
-            php7.0 libapache2-mod-php7.0 mcrypt php7.0-mcrypt php-mbstring php-pear php7.0-dev \
-                --no-install-recommends \
-                    && rm -rf /var/lib/apt/lists/*
-
-                    # install necessary locales
-                    RUN apt-get install -y locales \
+        # install necessary locales
+        RUN apt-get install -y locales \
                         && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
                             && locale-gen
 
