@@ -78,6 +78,6 @@ RUN sed -e 's/;clear_env = no/clear_env = no/' -i /etc/php/7.2/fpm/pool.d/www.co
 
 EXPOSE 8080
 
-COPY nginx.conf /etc/nginx/sites-enabled/default
-COPY supervisord.conf /etc/supervisord.conf
+COPY ./docker/nginx.conf /etc/nginx/sites-enabled/default
+COPY ./docker/supervisord.conf /etc/supervisord.conf
 CMD [ "/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf" ]
