@@ -22,8 +22,11 @@ RUN apt-get update && apt-get install -y \
                         && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
                             && locale-gen
 
-                            # install SQL Server PHP connector module 
-                            RUN pecl install sqlsrv pdo_sqlsrv
+        # install SQL Server PHP connector module 
+        RUN pecl install sqlsrv pdo_sqlsrv
+        RUN docker-php-ext-enable \
+            sqlsrv \
+            pdo_sqlsrv
 
                             # initial configuration of SQL Server PHP connector
         #RUN echo "extension=/usr/lib/php/20151012/sqlsrv.so" >> /etc/php/7.0/cli/php.ini
@@ -35,7 +38,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 		ENV PATH="${PATH}:/var/www/html/lib/Cake/Console"
 		ENV PATH="${PATH}:/var/www/html/app/Vendor/bin"
 
-RUN echo "<?php phpinfo();" > index.php
+                #COPY ./docker/phpinfo.php /var/www/html/app
+                #RUN ln -s /var/www/app/public/phpinfo.php /var/www/app/public/index.php
+
 		# COPY apache site.conf file
 		COPY ./docker/apache/site.conf /etc/apache2/sites-available/000-default.conf
 
