@@ -1,0 +1,34 @@
+2019-01-09 11:01:20,906 CRIT Supervisor running as root (no user in config file)
+2019-01-09 11:01:20,910 INFO supervisord started with pid 1
+2019-01-09 11:01:21,917 INFO spawned: 'cron' with pid 12
+2019-01-09 11:01:21,918 INFO spawned: 'nginx' with pid 13
+2019-01-09 11:01:21,920 INFO spawned: 'php-fpm' with pid 14
+2019-01-09 11:01:23,146 INFO success: cron entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-01-09 11:01:23,146 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-01-09 11:01:23,146 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-01-09 11:01:38,599 WARN received SIGTERM indicating exit request
+2019-01-09 11:01:38,600 INFO waiting for cron, nginx, php-fpm to die
+2019-01-09 11:01:38,613 INFO stopped: php-fpm (exit status 0)
+2019-01-09 11:01:38,619 INFO stopped: nginx (exit status 0)
+2019-01-09 11:01:38,619 INFO stopped: cron (terminated by SIGTERM)
+2019-01-09 11:02:07,111 CRIT Supervisor running as root (no user in config file)
+2019-01-09 11:02:07,116 INFO supervisord started with pid 1
+2019-01-09 11:02:08,118 INFO spawned: 'cron' with pid 10
+2019-01-09 11:02:08,120 INFO spawned: 'nginx' with pid 11
+2019-01-09 11:02:08,122 INFO spawned: 'php-fpm' with pid 12
+2019-01-09 11:02:09,175 INFO success: cron entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-01-09 11:02:09,176 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-01-09 11:02:09,176 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-01-09 11:04:03,280 WARN received SIGTERM indicating exit request
+2019-01-09 11:04:03,281 INFO waiting for cron, nginx, php-fpm to die
+2019-01-09 11:04:03,296 INFO stopped: php-fpm (exit status 0)
+2019-01-09 11:04:03,303 INFO stopped: nginx (exit status 0)
+2019-01-09 11:04:03,305 INFO stopped: cron (terminated by SIGTERM)
+2019-01-09 11:04:22,408 CRIT Supervisor running as root (no user in config file)
+2019-01-09 11:04:22,413 INFO supervisord started with pid 1
+2019-01-09 11:04:23,415 INFO spawned: 'cron' with pid 10
+2019-01-09 11:04:23,416 INFO spawned: 'nginx' with pid 11
+2019-01-09 11:04:23,417 INFO spawned: 'php-fpm' with pid 12
+2019-01-09 11:04:24,470 INFO success: cron entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-01-09 11:04:24,470 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-01-09 11:04:24,470 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
